@@ -1,0 +1,298 @@
+index
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ORACLE IMPÔT | Optimisation Fiscale 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      --text:#1e293b;
+      --muted:#64748b;
+      --bg:#ffffff;
+      --soft:#f8fafc;
+      --border:#e2e8f0;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .container{ max-width:1000px; margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    header{
+      height:80px;
+      display:flex; align-items:center;
+      border-bottom:1px solid var(--border);
+      background:#fff;
+      position:sticky; top:0; z-index:100;
+    }
+    .nav{ width:100%; display:flex; align-items:center; justify-content:space-between; }
+    .logo{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; font-weight:800; color:var(--primary); font-size:18px;
+    }
+    .logo-mark{ width:32px; height:32px; background:var(--accent-gradient); border-radius:10px; }
+    .logo span{ color:var(--accent); }
+    .nav-links a{ text-decoration:none; color:var(--primary); font-weight:700; font-size:14px; margin-left:25px; }
+
+    /* Hero */
+    .hero{ padding: 100px 0; text-align:center; }
+    .hero h1{ font-size: clamp(36px, 6vw, 58px); font-weight:800; color:var(--primary); margin:0 0 20px; letter-spacing:-0.04em; }
+    .hero p{ font-size: 20px; color:var(--muted); margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto; }
+    
+    .slogan{ 
+      display:flex; justify-content:center; gap:30px;
+      font-weight:800; color:var(--primary); margin-bottom:50px; font-size:20px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .slogan span{ color: var(--accent); }
+
+    /* Buttons */
+    .btn{
+      display:inline-block;
+      padding: 22px 50px;
+      background: var(--accent-gradient);
+      color:#fff;
+      text-decoration:none;
+      border-radius:18px;
+      font-weight:800;
+      font-size:18px;
+      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
+      transition: 0.3s;
+    }
+    .btn:hover{ transform: translateY(-3px); box-shadow: 0 20px 45px rgba(37, 99, 235, 0.35); }
+
+    /* Sections */
+    section{ padding: 90px 0; border-top: 1px solid var(--border); }
+    h2{ font-size: 32px; font-weight:800; color:var(--primary); margin-bottom:50px; text-align:center; letter-spacing:-0.02em; }
+
+    /* Comment ça marche */
+    .steps{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:50px; }
+    .step-num{ font-size:50px; font-weight:800; color:var(--accent); opacity:0.15; margin-bottom:-25px; }
+    .step h3{ font-size:22px; font-weight:800; margin-bottom:15px; }
+    .step p{ color:var(--muted); font-size:16px; }
+
+    /* Presse avec Logos */
+    .press-logos{
+      display: flex; justify-content: center; align-items: center; gap: 50px; flex-wrap: wrap;
+      filter: grayscale(100%); opacity: 0.6; transition: 0.3s;
+    }
+    .press-logos:hover{ filter: grayscale(0%); opacity: 1; }
+    .media-logo{ font-weight: 900; font-size: 22px; color: #1e293b; letter-spacing: -1px; }
+    .media-logo span{ color: #e11d48; }
+
+    /* Avis */
+    .testimonials{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:30px; }
+    .testi-card{ background:var(--soft); padding:40px; border-radius:24px; border:1px solid var(--border); }
+    .testi-card p{ font-size: 16px; font-weight:600; margin-bottom:20px; color: var(--primary); }
+    .testi-card .user{ display: flex; align-items: center; gap: 12px; }
+    .user-img{ width:40px; height:40px; background:var(--border); border-radius:50%; }
+    .user-info b{ display:block; font-size:14px; color:var(--primary); }
+    .user-info span{ font-size:12px; color:var(--muted); }
+
+    /* FAQ */
+    .faq-list{ max-width:800px; margin:0 auto; }
+    details{ margin-bottom:15px; border:1px solid var(--border); border-radius:18px; background:#fff; }
+    summary{ padding:22px; font-weight:800; cursor:pointer; list-style:none; display:flex; justify-content:space-between; color:var(--primary); }
+    summary::after{ content:"↓"; color:var(--accent); font-size:20px; }
+    details[open] summary::after{ transform:rotate(180deg); }
+    .faq-body{ padding:0 22px 22px; color:var(--muted); line-height:1.7; }
+    .faq-body b{ color:var(--primary); }
+
+    /* Footer /
+    footer{ padding:80px 0 40px; border-top:1px solid var(--border); }
+    .footer-grid{ display:grid; grid-template-columns: 1.5fr 1fr; gap:40px; }
+    .footer-links a{ display:block; text-decoration:none; color:var(--muted); margin-bottom:12px; font-weight:600; font-size:14px; }
+
+    @media (max-width: 768px){
+      .slogan{ gap: 15px; font-size: 16px; }
+      .footer-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a href="index.html" class="logo">
+        <div class="logo-mark"></div>
+        ORACLE <span>IMPÔT</span>
+      </a>
+      <nav class="nav-links">
+        <a href="propos.html">À propos</a>
+        <a href="test.html" style="color:var(--accent)">Test d'éligibilité</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="container">
+      <h1>Réduisez vos impôts</h1>
+      <p>Identifiez en 2 minutes si vous êtes éligible à des réductions d'impôts pour l'année 2026.</p>
+      <div class="slogan">
+        <span>Rapide</span>
+        <span>Efficace</span>
+        <span>Gratuit</span>
+      </div>
+      <a href="test.html" class="btn">Faire mon test d'éligibilité</a>
+    </div>
+  </section>
+
+  <!-- PRESSE -->
+  <section style="padding: 60px 0;">
+    <div class="container">
+      <div class="press-logos">
+        <div class="media-logo">BFM<span>BUSINESS</span></div>
+        <div class="media-logo" style="color:#000">C<span>NEWS</span></div>
+        <div class="media-logo" style="letter-spacing:0">Le<span>Figaro</span></div>
+        <div class="media-logo" style="color:#2563eb">L'<span>ÉCHO</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section>
+    <div class="container">
+      <h2>Comment ça marche ?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Test d'éligibilité</h3>
+          <p>Répondez à quelques questions simples pour savoir si votre profil permet une optimisation fiscale significative.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Accompagnement</h3>
+          <p>Un expert analyse vos résultats et vous contacte pour valider les dispositifs adaptés à votre foyer.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Optimisation</h3>
+          <p>Mettez en place les solutions recommandées et commencez à réduire vos impôts dès cette année.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section>
+    <div class="container">
+      <h2>Nos utilisateurs témoignent</h2>
+      <div class="testimonials">
+        <div class="testi-card">
+          <p>"Une expertise rare et un accompagnement très clair. J'ai réduit mes impôts de 4200€ dès la première année."</p>
+          <div class="user">
+            <div class="user-img"></div>
+            <div class="user-info">
+              <b>Jean-Baptiste Morel</b>
+              <span>Cadre supérieur</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"Le test est ultra rapide et les conseils de l'expert ont été déterminants pour mon investissement LMNP."</p>
+          <div class="user">
+            <div class="user-img"></div>
+            <div class="user-info">
+              <b>Marie-Laure Perrin</b>
+              <span>Profession libérale</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"Enfin un service transparent et efficace. Je recommande Oracle Impôt à tout mon entourage."</p>
+          <div class="user">
+            <div class="user-img"></div>
+            <div class="user-info">
+              <b>Thomas Durand</b>
+              <span>Entrepreneur</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ FISCALE -->
+  <section style="background: var(--soft);">
+    <div class="container">
+      <h2>Expertise Fiscale & Optimisation</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Comment réduire mon impôt sur le revenu en 2026 ?</summary>
+          <div class="faq-body">
+            Il existe trois leviers principaux : les <b>déductions</b> (frais réels, pensions), les <b>réductions</b> (dons, investissements PME) et les <b>crédits d'impôt</b> (garde d'enfants, emploi à domicile). Notre test analyse quel levier est le plus puissant selon votre tranche marginale d'imposition (TMI).
+          </div>
+        </details>
+        <details>
+          <summary>Qu'est-ce que le plafonnement des niches fiscales ?</summary>
+          <div class="faq-body">
+            En France, le cumul des avantages fiscaux est généralement limité à <b>10 000 € par an</b>. Toutefois, certains dispositifs comme la Loi Malraux ou le Monument Historique permettent de dépasser ce plafond. Nous vérifions votre saturation actuelle pour éviter tout risque de redressement.
+          </div>
+        </details>
+        <details>
+          <summary>Pourquoi ma TMI est-elle plus importante que mon taux moyen ?</summary>
+          <div class="faq-body">
+            Votre TMI (Tranche Marginale d'Imposition) est le taux appliqué à votre dernier euro gagné (11%, 30%, 41% ou 45%). C'est sur ce taux que se calculent vos économies d'impôts. Une réduction est bien plus efficace si vous êtes dans une tranche à 30% ou plus.
+          </div>
+        </details>
+        <details>
+          <summary>Le prélèvement à la source change-t-il l'intérêt de défiscaliser ?</summary>
+          <div class="faq-body">
+            Non, le prélèvement à la source n'est qu'une modalité de paiement. Le calcul de l'impôt final reste le même. Les réductions d'impôts générées en 2026 donneront lieu à un remboursement de la part du Trésor Public à l'été 2027.
+          </div>
+        </details>
+        <details>
+          <summary>Quels sont les risques d'un investissement de défiscalisation ?</summary>
+          <div class="faq-body">
+            Le risque principal est le non-respect des conditions de durée (ex: louer pendant 6, 9 ou 12 ans). Oracle Impôt vous met en relation avec des experts qui sécurisent le montage juridique pour garantir la pérennité de votre avantage fiscal.
+          </div>
+        </details>
+      </div>
+      <div style="text-align:center; margin-top:60px;">
+        <a href="test.html" class="btn">Lancer mon diagnostic fiscal</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:20px">
+          <div class="logo-mark"></div>
+          ORACLE <span>IMPÔT</span>
+        </a>
+        <p style="color:var(--muted); font-size:14px; max-width:300px;">Expertise en optimisation fiscale et accompagnement patrimonial pour les particuliers.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Mentions Légales</a>
+        <a href="#">Politique de Confidentialité</a>
+        <a href="#">Gestion des Cookies</a>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:60px; color:var(--muted); font-size:13px; font-weight:600;">© 2026 ORACLE IMPÔT. Tous droits réservés.</p>
+  </div>
+</footer>
+
+</body>
+</html>

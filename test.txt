@@ -1,0 +1,709 @@
+test
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test d'éligibilité | ORACLE IMPÔT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --accent2:#3b82f6;
+      --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      --text:#1e293b;
+      --muted:#64748b;
+      --bg:#ffffff;
+      --soft:#f8fafc;
+      --border:#e2e8f0;
+      --shadow-sm: 0 2px 10px rgba(15,23,42,.05);
+      --shadow-md: 0 24px 60px rgba(15,23,42,.08);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--soft);
+      color:var(--text);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{ color:inherit; }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:100;
+      background:rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      border-bottom:1px solid rgba(226,232,240,.9);
+    }
+    .nav{
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .logo{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:-.02em;
+      color:var(--primary);
+      font-size:16px;
+      white-space:nowrap;
+    }
+    .mark{
+      width:34px;height:34px;border-radius:12px;
+      background:var(--accent-gradient);
+      box-shadow:0 14px 30px rgba(37,99,235,.25);
+      flex:0 0 auto;
+    }
+    .logo span{ color:var(--accent); }
+
+    .navlinks{ display:flex; align-items:center; gap:22px; }
+    .navlinks a{
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius:12px;
+      transition:.18s ease;
+    }
+    .navlinks a:hover{ background:var(--soft); color:var(--primary); }
+    .navlinks a[aria-current="page"]{
+      color:var(--accent);
+      background:#eff6ff;
+      border:1px solid #dbeafe;
+    }
+
+    .menu-btn{
+      display:none;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:800;
+      color:var(--primary);
+      box-shadow:var(--shadow-sm);
+      cursor:pointer;
+    }
+
+    .drawer{
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(2,6,23,.55);
+      z-index:200;
+      padding:18px;
+    }
+    .drawer[aria-hidden="false"]{ display:block; }
+    .panel{
+      background:#fff;
+      border-radius:22px;
+      padding:16px;
+      max-width:520px;
+      margin:0 auto;
+      box-shadow:var(--shadow-md);
+      border:1px solid rgba(226,232,240,.9);
+    }
+    .panel-top{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:6px 6px 12px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:10px;
+    }
+    .close-btn{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .panel a{
+      display:block;
+      text-decoration:none;
+      padding:14px 12px;
+      border-radius:14px;
+      font-weight:800;
+      color:var(--primary);
+    }
+    .panel a:hover{ background:var(--soft); }
+
+    /* Test Section */
+    main{ 
+      min-height: calc(100vh - 72px);
+      padding: clamp(24px, 5vw, 60px) 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .test-wrapper{
+      max-width:680px;
+      margin:0 auto;
+      width:100%;
+    }
+
+    .progress-container{
+      background:#fff;
+      border-radius:16px;
+      padding:8px;
+      margin-bottom:24px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow-sm);
+    }
+    .progress-bar-outer{
+      height:10px;
+      background:var(--soft);
+      border-radius:10px;
+      overflow:hidden;
+    }
+    .progress-bar{
+      height:100%;
+      background:var(--accent-gradient);
+      border-radius:10px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px rgba(37,99,235,.4);
+    }
+    .progress-text{
+      text-align:center;
+      font-size:12px;
+      font-weight:800;
+      color:var(--muted);
+      margin-top:8px;
+      letter-spacing:.5px;
+    }
+
+    .question-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      padding: clamp(24px, 4vw, 48px);
+      box-shadow:var(--shadow-md);
+      animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp{
+      from{ opacity:0; transform:translateY(20px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    .question-title{
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight:800;
+      color:var(--primary);
+      margin:0 0 8px;
+      letter-spacing:-.02em;
+    }
+    .question-subtitle{
+      font-size:14px;
+      color:var(--muted);
+      margin:0 0 28px;
+    }
+
+    .choices{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-bottom:28px;
+    }
+
+    .choice-btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 22px;
+      border:2px solid var(--border);
+      border-radius:16px;
+      background:#fff;
+      font-weight:600;
+      font-size:15px;
+      color:var(--primary);
+      cursor:pointer;
+      transition: all 0.2s ease;
+      text-align:left;
+      min-height:56px;
+    }
+    .choice-btn:hover{
+      border-color:var(--accent);
+      background:#eff6ff;
+      transform:translateX(4px);
+    }
+    .choice-btn.selected{
+      border-color:var(--accent);
+      background:#eff6ff;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+    }
+    .choice-btn .icon{
+      width:24px;height:24px;
+      border-radius:50%;
+      border:2px solid var(--border);
+      flex-shrink:0;
+      transition:.2s;
+    }
+    .choice-btn.selected .icon{
+      background:var(--accent-gradient);
+      border-color:var(--accent);
+      box-shadow:inset 0 0 0 4px #fff;
+    }
+
+    /* Input style */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"]{
+      width:100%;
+      padding:16px 18px;
+      border:2px solid var(--border);
+      border-radius:14px;
+      font-family:inherit;
+      font-size:16px;
+      font-weight:600;
+      color:var(--primary);
+      transition:.2s;
+      margin-bottom:12px;
+    }
+    input:focus{
+      outline:none;
+      border-color:var(--accent);
+      background:#eff6ff;
+    }
+    input::placeholder{
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 16px 32px;
+      border-radius:14px;
+      font-weight:800;
+      font-size:15px;
+      text-decoration:none;
+      transition:.2s ease;
+      user-select:none;
+      cursor:pointer;
+      border:none;
+      min-height:52px;
+      width:100%;
+    }
+    .btn-primary{
+      color:#fff;
+      background:var(--accent-gradient);
+      box-shadow:0 12px 28px rgba(37,99,235,.3);
+    }
+    .btn-primary:hover:not(:disabled){
+      transform: translateY(-2px);
+      box-shadow:0 18px 36px rgba(37,99,235,.4);
+    }
+    .btn-primary:disabled{
+      opacity:0.4;
+      cursor:not-allowed;
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--primary);
+      border:2px solid var(--border);
+    }
+    .btn-secondary:hover{
+      border-color:var(--accent);
+      background:var(--soft);
+    }
+
+    /* Result Message */
+    .result-message{
+      text-align:center;
+      padding:32px;
+    }
+    .result-message h2{
+      font-size:32px;
+      margin-bottom:16px;
+      color:var(--primary);
+    }
+    .result-message p{
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+
+    .ineligible-message{
+      background:#fef3c7;
+      border:1px solid #fcd34d;
+      border-radius:16px;
+      padding:20px;
+      margin-bottom:20px;
+      color:#92400e;
+    }
+
+    /* Footer RGPD */
+    .rgpd{
+      margin-top:24px;
+      padding-top:20px;
+      border-top:1px solid var(--border);
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .rgpd label{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      cursor:pointer;
+    }
+    .rgpd input[type="checkbox"]{
+      margin-top:2px;
+      flex-shrink:0;
+    }
+
+    .security-note{
+      font-size:12px;
+      color:var(--muted);
+      margin:-8px 0 20px 4px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    @media (max-width: 920px){
+      .navlinks{ display:none; }
+      .menu-btn{ display:inline-flex; align-items:center; gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="logo" href="index.html" aria-label="Oracle Impôt - Accueil">
+        <span class="mark" aria-hidden="true"></span>
+        ORACLE <span>IMPÔT</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="test.html" aria-current="page">Test</a>
+        <a href="propos.html">À propos</a>
+      </nav>
+
+      <button class="menu-btn" type="button" aria-haspopup="dialog" aria-controls="mobileDrawer" aria-expanded="false" id="openMenu">
+        Menu
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="mobileDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="panel">
+    <div class="panel-top">
+      <div style="display:flex; align-items:center; gap:10px; font-weight:900; color:var(--primary);">
+        <span class="mark" aria-hidden="true"></span> ORACLE <span style="color:var(--accent)">IMPÔT</span>
+      </div>
+      <button class="close-btn" type="button" id="closeMenu" aria-label="Fermer le menu">Fermer</button>
+    </div>
+    <a href="index.html">Accueil</a>
+    <a href="test.html" aria-current="page">Test d'éligibilité</a>
+    <a href="propos.html">À propos</a>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="test-wrapper">
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar-outer">
+          <div class="progress-bar" id="progressBar" style="width:0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">Question 1 sur 7</div>
+      </div>
+
+      <!-- Questions Container -->
+      <div class="question-card" id="questionContainer">
+        <!-- Questions dynamically injected here -->
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  // Mobile menu
+  const drawer = document.getElementById('mobileDrawer');
+  const openBtn = document.getElementById('openMenu');
+  const closeBtn = document.getElementById('closeMenu');
+
+  function openDrawer(){
+    drawer.setAttribute('aria-hidden','false');
+    openBtn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeDrawer(){
+    drawer.setAttribute('aria-hidden','true');
+    openBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+    openBtn.focus();
+  }
+
+  openBtn && openBtn.addEventListener('click', openDrawer);
+  closeBtn && closeBtn.addEventListener('click', closeDrawer);
+
+  drawer.addEventListener('click', function(e){
+    if(e.target === drawer) closeDrawer();
+  });
+
+  document.addEventListener('keydown', function(e){
+    const isOpen = drawer.getAttribute('aria-hidden') === 'false';
+    if(isOpen && e.key === 'Escape') closeDrawer();
+  });
+
+  // Test Logic
+  let currentStep = 0;
+  let answers = {};
+
+  const questions = [
+    {
+      id: 'situation',
+      title: 'Quelle est votre situation ?',
+      type: 'choice',
+      choices: [
+        'Salarié',
+        'Indépendant / Profession libérale',
+        'Chef d\'entreprise',
+        'Retraité',
+        'Étudiant',
+        'Sans activité'
+      ]
+    },
+    {
+      id: 'age',
+      title: 'Quel âge avez-vous ?',
+      subtitle: 'Indiquez votre âge en années',
+      type: 'input',
+      inputType: 'number',
+      placeholder: 'Ex : 35'
+    },
+    {
+      id: 'enfants',
+      title: 'Combien d\'enfants à charge avez-vous ?',
+      type: 'choice',
+      choices: ['0', '1', '2', '3', '4 ou plus']
+    },
+    {
+      id: 'logement',
+      title: 'Comment logez-vous ?',
+      type: 'choice',
+      choices: [
+        'Propriétaire (résidence principale)',
+        'Locataire',
+        'Logé gratuitement'
+      ]
+    },
+    {
+      id: 'activite',
+      title: 'Quelle est votre activité ?',
+      subtitle: 'Précisez votre secteur ou fonction',
+      type: 'input',
+      inputType: 'text',
+      placeholder: 'Ex : Ingénieur informatique, Médecin...'
+    },
+    {
+      id: 'revenus',
+      title: 'Quels sont vos revenus nets MENSUELS ?',
+      subtitle: 'Montant après impôts',
+      type: 'input',
+      inputType: 'number',
+      placeholder: 'Ex : 3500'
+    },
+    {
+      id: 'contact',
+      title: 'Votre résultat est prêt',
+      subtitle: 'Laissez-nous vos coordonnées pour recevoir votre analyse personnalisée',
+      type: 'contact'
+    }
+  ];
+
+  function renderQuestion(){
+    const q = questions[currentStep];
+    const container = document.getElementById('questionContainer');
+    
+    let html = `
+      <div class="question-title">${q.title}</div>
+      ${q.subtitle ? `<div class="question-subtitle">${q.subtitle}</div>` : ''}
+    `;
+
+    if(q.type === 'choice'){
+      html += '<div class="choices">';
+      q.choices.forEach(choice => {
+        html += `
+          <div class="choice-btn" data-value="${choice}">
+            <span>${choice}</span>
+            <div class="icon"></div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      html += `<button class="btn btn-primary" id="nextBtn" disabled>Suivant</button>`;
+    }
+    else if(q.type === 'input'){
+      html += `
+        <input type="${q.inputType}" id="inputField" placeholder="${q.placeholder}" />
+        <button class="btn btn-primary" id="nextBtn" disabled>Suivant</button>
+      `;
+    }
+    else if(q.type === 'contact'){
+      html += `
+        <input type="text" id="nom" placeholder="Nom et Prénom *" required />
+        <input type="email" id="email" placeholder="Email *" required />
+        <input type="tel" id="phone" placeholder="Téléphone *" required />
+        <p class="security-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Un code de vérification peut vous être envoyé par SMS.
+        </p>
+        
+        <div class="rgpd">
+          <label>
+            <input type="checkbox" id="rgpdCheck" required />
+            <span>J'accepte d'être contacté(e) par Oracle Impôt et reconnais avoir pris connaissance de la politique de confidentialité.</span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary" id="submitBtn" disabled>Recevoir mon analyse</button>
+      `;
+    }
+
+    container.innerHTML = html;
+    
+    // Mise à jour barre de progression
+    const progress = ((currentStep + 1) / questions.length) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+    document.getElementById('progressText').textContent = `Question ${currentStep + 1} sur ${questions.length}`;
+
+    attachListeners();
+  }
+
+  function attachListeners(){
+    const q = questions[currentStep];
+    
+    if(q.type === 'choice'){
+      const choices = document.querySelectorAll('.choice-btn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      choices.forEach(btn => {
+        btn.addEventListener('click', function(){
+          choices.forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          answers[q.id] = this.dataset.value;
+          nextBtn.disabled = false;
+        });
+      });
+
+      nextBtn.addEventListener('click', handleNext);
+    }
+    else if(q.type === 'input'){
+      const input = document.getElementById('inputField');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      input.addEventListener('input', function(){
+        nextBtn.disabled = this.value.trim() === '';
+        answers[q.id] = this.value;
+      });
+
+      nextBtn.addEventListener('click', handleNext);
+      input.focus();
+    }
+    else if(q.type === 'contact'){
+      const nom = document.getElementById('nom');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const rgpd = document.getElementById('rgpdCheck');
+      const submitBtn = document.getElementById('submitBtn');
+
+      function checkForm(){
+        const valid = nom.value.trim() && email.value.trim() && phone.value.trim() && rgpd.checked;
+        submitBtn.disabled = !valid;
+      }
+
+      nom.addEventListener('input', checkForm);
+      email.addEventListener('input', checkForm);
+      phone.addEventListener('input', checkForm);
+      rgpd.addEventListener('change', checkForm);
+
+      submitBtn.addEventListener('click', handleSubmit);
+      nom.focus();
+    }
+  }
+
+  function handleNext(){
+    // Filtrage automatique
+    if(questions[currentStep].id === 'situation' && answers.situation === 'Étudiant'){
+      showIneligibleMessage();
+      return;
+    }
+
+    currentStep++;
+    if(currentStep < questions.length){
+      renderQuestion();
+    }
+  }
+
+  function showIneligibleMessage(){
+    const container = document.getElementById('questionContainer');
+    container.innerHTML = `
+      <div class="result-message">
+        <div class="ineligible-message">
+          <strong>Profil non éligible</strong><br>
+          Votre situation actuelle ne permet pas de bénéficier des dispositifs d'optimisation fiscale disponibles via notre plateforme.
+        </div>
+        <a href="index.html" class="btn btn-secondary">Retour à l'accueil</a>
+      </div>
+    `;
+  }
+
+  function handleSubmit(){
+    answers.nom = document.getElementById('nom').value;
+    answers.email = document.getElementById('email').value;
+    answers.phone = document.getElementById('phone').value;
+
+    // Envoi Formspree (à configurer avec votre ID)
+    fetch('https://formspree.io/f/VOTRE_ID', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(answers)
+    })
+    .then(() => {
+      window.location.href = 'resultat.html';
+    })
+    .catch(() => {
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    });
+  }
+
+  // Init
+  renderQuestion();
+})();
+</script>
+
+</body>
+</html>

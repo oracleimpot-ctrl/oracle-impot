@@ -1,0 +1,522 @@
+Propos
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>À propos | ORACLE IMPÔT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --accent2:#3b82f6;
+      --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      --text:#1e293b;
+      --muted:#64748b;
+      --bg:#ffffff;
+      --soft:#f8fafc;
+      --border:#e2e8f0;
+      --shadow-sm: 0 2px 10px rgba(15,23,42,.05);
+      --shadow-md: 0 24px 60px rgba(15,23,42,.08);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{ color:inherit; }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:100;
+      background:rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      border-bottom:1px solid rgba(226,232,240,.9);
+    }
+    .nav{
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .logo{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:-.02em;
+      color:var(--primary);
+      font-size:16px;
+      white-space:nowrap;
+    }
+    .mark{
+      width:34px;height:34px;border-radius:12px;
+      background:var(--accent-gradient);
+      box-shadow:0 14px 30px rgba(37,99,235,.25);
+      flex:0 0 auto;
+    }
+    .logo span{ color:var(--accent); }
+
+    .navlinks{ display:flex; align-items:center; gap:22px; }
+    .navlinks a{
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius:12px;
+      transition:.18s ease;
+    }
+    .navlinks a:hover{ background:var(--soft); color:var(--primary); }
+    .navlinks a[aria-current="page"]{
+      color:var(--accent);
+      background:#eff6ff;
+      border:1px solid #dbeafe;
+    }
+
+    /* Mobile menu button */
+    .menu-btn{
+      display:none;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:800;
+      color:var(--primary);
+      box-shadow:var(--shadow-sm);
+      cursor:pointer;
+    }
+
+    /* Mobile drawer */
+    .drawer{
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(2,6,23,.55);
+      z-index:200;
+      padding:18px;
+    }
+    .drawer[aria-hidden="false"]{ display:block; }
+    .panel{
+      background:#fff;
+      border-radius:22px;
+      padding:16px;
+      max-width:520px;
+      margin:0 auto;
+      box-shadow:var(--shadow-md);
+      border:1px solid rgba(226,232,240,.9);
+    }
+    .panel-top{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:6px 6px 12px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:10px;
+    }
+    .close-btn{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .panel a{
+      display:block;
+      text-decoration:none;
+      padding:14px 12px;
+      border-radius:14px;
+      font-weight:800;
+      color:var(--primary);
+    }
+    .panel a:hover{ background:var(--soft); }
+
+    /* Hero */
+    .hero{
+      padding: clamp(52px, 8vw, 96px) 0 clamp(28px, 6vw, 64px);
+      text-align:center;
+      background:
+        radial-gradient(circle at 50% -20%, #eff6ff 0%, rgba(239,246,255,0) 55%),
+        linear-gradient(#fff, #fff);
+    }
+    .badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:7px 14px;
+      border-radius:999px;
+      background:#eff6ff;
+      border:1px solid #dbeafe;
+      color:var(--accent);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0 auto 16px;
+      max-width:18ch;
+      font-size: clamp(32px, 4.8vw, 56px);
+      line-height:1.08;
+      letter-spacing:-0.04em;
+      color:var(--primary);
+      font-weight:800;
+    }
+    .hero p{
+      margin:0 auto 26px;
+      max-width: 62ch;
+      font-size: clamp(16px, 1.8vw, 20px);
+      color:var(--muted);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 18px;
+      border-radius:16px;
+      font-weight:800;
+      text-decoration:none;
+      transition:.2s ease;
+      user-select:none;
+      min-height:48px; /* mobile tap target */
+    }
+    .btn-primary{
+      color:#fff;
+      background:var(--accent-gradient);
+      box-shadow:0 20px 45px rgba(37,99,235,.28);
+    }
+    .btn-primary:hover{ transform: translateY(-2px); box-shadow:0 26px 55px rgba(37,99,235,.35); }
+    .btn-secondary{
+      margin-left:10px;
+      background:#fff;
+      color:var(--primary);
+      border:1px solid var(--border);
+    }
+    .btn-secondary:hover{ transform: translateY(-2px); background:var(--soft); }
+
+    /* Sections */
+    main{ padding: 0 0 76px; }
+    .section{ padding: clamp(36px, 7vw, 88px) 0; }
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(22px, 5vw, 76px);
+      align-items:center;
+    }
+    .kicker{
+      display:block;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:14px;
+    }
+    h2{
+      margin:0 0 14px;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height:1.15;
+      letter-spacing:-.02em;
+      color:var(--primary);
+      font-weight:800;
+    }
+    .p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .quote{
+      background: var(--soft);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: var(--radius-lg);
+      padding: clamp(18px, 3.2vw, 40px);
+      position:relative;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+    }
+    .quote:before{
+      content:"“";
+      position:absolute;
+      top:-14px; left:18px;
+      font-size:96px;
+      color:rgba(37,99,235,.12);
+      font-family: Georgia, serif;
+      line-height:1;
+    }
+    .quote p{
+      margin:0;
+      font-size: clamp(16px, 2.1vw, 20px);
+      font-weight:700;
+      color:var(--primary);
+      position:relative;
+    }
+
+    /* Process cards */
+    .center{
+      text-align:center;
+      max-width:64ch;
+      margin:0 auto;
+    }
+    .process{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+    .pcard{
+      background:#fff;
+      border:1px solid rgba(226,232,240,.95);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow:var(--shadow-sm);
+      transition:.25s ease;
+    }
+    .pcard:hover{ transform: translateY(-6px); box-shadow:var(--shadow-md); border-color:#dbeafe; }
+    .icon{
+      width:54px;height:54px;border-radius:18px;
+      background:var(--accent-gradient);
+      color:#fff;
+      font-weight:900;
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:14px;
+      box-shadow:0 16px 30px rgba(37,99,235,.22);
+    }
+    .pcard h3{ margin:0 0 8px; font-size:16px; color:var(--primary); }
+    .pcard p{ margin:0; color:var(--muted); font-size:14px; }
+
+    /* CTA */
+    .cta{
+      margin-top: clamp(26px, 6vw, 56px);
+      background: var(--primary);
+      color:#fff;
+      border-radius: 36px;
+      padding: clamp(26px, 5.5vw, 64px);
+      position:relative;
+      overflow:hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .cta:after{
+      content:"";
+      position:absolute;
+      inset:-60%;
+      background: radial-gradient(circle, rgba(37,99,235,.16) 0%, rgba(37,99,235,0) 60%);
+      pointer-events:none; /* important */
+    }
+    .cta-inner{
+      position:relative;
+      text-align:center;
+      max-width: 70ch;
+      margin:0 auto;
+    }
+    .cta h2{ color:#fff; margin-bottom:10px; }
+    .cta p{ color: rgba(255,255,255,.78); margin:0 0 18px; }
+
+    .fine{
+      margin-top:12px;
+      font-size:12px;
+      color: rgba(255,255,255,.65);
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:34px 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      background:#fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .navlinks{ display:none; }
+      .menu-btn{ display:inline-flex; align-items:center; gap:10px; }
+      .btn-secondary{ margin-left:0; margin-top:10px; }
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns:1fr; }
+      .process{ grid-template-columns:1fr; }
+      .pcard{ padding:20px; }
+      h1{ max-width: 22ch; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; scroll-behavior:auto !important; }
+      .pcard:hover, .btn-primary:hover, .btn-secondary:hover{ transform:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="logo" href="index.html" aria-label="Oracle Impôt - Accueil">
+        <span class="mark" aria-hidden="true"></span>
+        ORACLE <span>IMPÔT</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="test.html">Test</a>
+        <a href="propos.html" aria-current="page">À propos</a>
+      </nav>
+
+      <button class="menu-btn" type="button" aria-haspopup="dialog" aria-controls="mobileDrawer" aria-expanded="false" id="openMenu">
+        Menu
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="drawer" id="mobileDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="panel">
+    <div class="panel-top">
+      <div style="display:flex; align-items:center; gap:10px; font-weight:900; color:var(--primary);">
+        <span class="mark" aria-hidden="true"></span> ORACLE <span style="color:var(--accent)">IMPÔT</span>
+      </div>
+      <button class="close-btn" type="button" id="closeMenu" aria-label="Fermer le menu">Fermer</button>
+    </div>
+    <a href="index.html">Accueil</a>
+    <a href="test.html">Test d’éligibilité</a>
+    <a href="propos.html" aria-current="page">À propos</a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">Expertise • Clarté • Accompagnement</div>
+    <h1>L’intelligence fiscale, sans complexité.</h1>
+    <p>
+      Oracle Impôt vous aide à comprendre votre situation et à identifier des pistes pertinentes.
+      En quelques minutes, vous obtenez une première orientation et, si besoin, un accompagnement.
+    </p>
+    <div>
+      <a class="btn btn-primary" href="test.html">Démarrer mon analyse</a>
+      <a class="btn btn-secondary" href="contact.html">Être rappelé</a>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <section class="section">
+      <div class="grid2">
+        <div>
+          <span class="kicker">Notre vision</span>
+          <h2>Redonner du pouvoir aux contribuables.</h2>
+          <p class="p">
+            La fiscalité est souvent vécue comme une contrainte. Notre objectif est de la rendre plus lisible,
+            et de vous aider à faire le point avec une approche simple, structurée et accessible.
+          </p>
+          <p class="p" style="margin-bottom:0;">
+            Nous privilégions un parcours court, des explications claires, et une mise en relation lorsque cela
+            apporte une vraie valeur.
+          </p>
+        </div>
+
+        <div class="quote" aria-label="Notre mission en une phrase">
+          <p>« Transformer une question fiscale en une décision claire, avec méthode et sérénité. »</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="center">
+        <span class="kicker">Méthodologie</span>
+        <h2>Un parcours en trois étapes.</h2>
+        <p class="p" style="margin:0;">
+          Une démarche simple : comprendre, vérifier, avancer — sans perdre de temps.
+        </p>
+      </div>
+
+      <div class="process" role="list">
+        <div class="pcard" role="listitem">
+          <div class="icon">01</div>
+          <h3>Diagnostic</h3>
+          <p>Un test rapide pour poser les bases et structurer votre situation.</p>
+        </div>
+
+        <div class="pcard" role="listitem">
+          <div class="icon">02</div>
+          <h3>Validation</h3>
+          <p>Un échange pour confirmer les pistes pertinentes et répondre à vos questions.</p>
+        </div>
+
+        <div class="pcard" role="listitem">
+          <div class="icon">03</div>
+          <h3>Accompagnement</h3>
+          <p>Quand c’est utile, vous êtes guidé(e) étape par étape, de façon claire et sécurisée.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <div class="cta-inner">
+          <h2>Prêt à faire le point ?</h2>
+          <p>Analyse gratuite, confidentielle et sans engagement.</p>
+          <a class="btn btn-primary" href="test.html">Calculer mon éligibilité</a>
+          <div class="fine">Vos informations sont traitées conformément au RGPD.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div>&copy; 2026 ORACLE IMPÔT. Tous droits réservés.</div>
+    <div style="margin-top:6px; font-size:12px;">Plateforme d’orientation. Données sécurisées (RGPD).</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const drawer = document.getElementById('mobileDrawer');
+    const openBtn = document.getElementById('openMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openDrawer(){
+      drawer.setAttribute('aria-hidden','false');
+      openBtn.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function closeDrawer(){
+      drawer.setAttribute('aria-hidden','true');
+      openBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+      openBtn.focus();
+    }
+
+    openBtn && openBtn.addEventListener('click', openDrawer);
+    closeBtn && closeBtn.addEventListener('click', closeDrawer);
+
+    // close on backdrop click
+    drawer.addEventListener('click', function(e){
+      if(e.target === drawer) closeDrawer();
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', function(e){
+      const isOpen = drawer.getAttribute('aria-hidden') === 'false';
+      if(isOpen && e.key === 'Escape') closeDrawer();
+    });
+  })();
+</script>
+</body>
+</html>

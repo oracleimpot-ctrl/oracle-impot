@@ -1,0 +1,213 @@
+résulat
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analyse Terminée | ORACLE IMPÔT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --accent2:#3b82f6;
+      --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      --text:#1e293b;
+      --muted:#64748b;
+      --bg:#ffffff;
+      --soft:#f8fafc;
+      --border:#e2e8f0;
+      --success:#10b981;
+      --shadow-md: 0 24px 60px rgba(15,23,42,.08);
+      --radius-lg: 32px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans", sans-serif;
+      background:var(--soft);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    header{
+      background:rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      border-bottom:1px solid var(--border);
+      position:sticky; top:0; z-index:100;
+    }
+    .nav{ height:72px; display:flex; align-items:center; justify-content:space-between; }
+    .logo{
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none; font-weight:800; color:var(--primary);
+    }
+    .mark{
+      width:34px; height:34px; border-radius:12px;
+      background:var(--accent-gradient);
+    }
+    .logo span{ color:var(--accent); }
+
+    /* Result Section */
+    main{ padding: 60px 0; display:flex; align-items:center; justify-content:center; min-height:80vh; }
+    
+    .result-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      padding: clamp(30px, 5vw, 60px);
+      box-shadow:var(--shadow-md);
+      max-width:700px;
+      width:100%;
+      text-align:center;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .status-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:var(--success);
+      padding:8px 16px;
+      border-radius:100px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:24px;
+    }
+
+    h1{
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight:800;
+      color:var(--primary);
+      margin:0 0 16px;
+      letter-spacing:-.03em;
+    }
+
+    .description{
+      font-size:17px;
+      color:var(--muted);
+      margin-bottom:40px;
+    }
+
+    /* Next Steps Box */
+    .next-steps{
+      background:var(--soft);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:32px;
+      text-align:left;
+      margin-bottom:40px;
+    }
+
+    .step-item{
+      display:flex;
+      gap:16px;
+      margin-bottom:20px;
+    }
+    .step-item:last-child{ margin-bottom:0; }
+
+    .step-number{
+      width:28px; height:28px;
+      background:var(--accent-gradient);
+      color:#fff;
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:800; font-size:14px; flex-shrink:0;
+    }
+
+    .step-text b{ color:var(--primary); display:block; margin-bottom:4px; }
+    .step-text p{ margin:0; font-size:14px; color:var(--muted); }
+
+    /* Button */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px 36px;
+      border-radius:16px;
+      font-weight:800;
+      text-decoration:none;
+      transition:.2s;
+      cursor:pointer;
+      border:none;
+      width:100%;
+      font-size:16px;
+    }
+    .btn-primary{
+      background:var(--accent-gradient);
+      color:#fff;
+      box-shadow:0 12px 28px rgba(37,99,235,.25);
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(37,99,235,.35);
+    }
+
+    @media (max-width: 600px){
+      .result-card{ padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="logo" href="index.html">
+        <div class="mark"></div>
+        ORACLE <span>IMPÔT</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="result-card">
+      <div class="status-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        Analyse en cours de finalisation
+      </div>
+
+      <h1>Diagnostic établi.</h1>
+      <p class="description">
+        L'analyse de votre profil confirme un <b>potentiel d'optimisation fiscale significatif</b> pour l'année en cours.
+      </p>
+
+      <div class="next-steps">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-text">
+            <b>Analyse par un expert</b>
+            <p>Un conseiller Oracle Impôt examine actuellement vos données pour identifier les meilleurs dispositifs adaptés à votre situation.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-text">
+            <b>Appel de confirmation</b>
+            <p>Vous recevrez un appel sous 24h à 48h pour valider votre éligibilité et recevoir votre bilan personnalisé gratuit.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
