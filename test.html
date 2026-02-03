@@ -595,7 +595,7 @@
     container.innerHTML = html;
     
     // Mise à jour barre de progression
-    const progress = ((currentStep + 1) / questions.length) * 100;
+    const progress = ((currentStep + 1) / questions.length)  100;
     document.getElementById('progressBar').style.width = progress + '%';
     document.getElementById('progressText').textContent = `Question ${currentStep + 1} sur ${questions.length}`;
 
@@ -685,17 +685,55 @@
     answers.email = document.getElementById('email').value;
     answers.phone = document.getElementById('phone').value;
 
-    // Envoi Formspree (à configurer avec votre ID)
-    fetch('https://formspree.io/f/VOTRE_ID', {
+    // Construction du message pour Formspree
+    const message = `
+Diagnostic Oracle Impôt - Réponses:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 Nom: ${answers.nom}
+📧 Email: ${answers.email}
+📱 Téléphone: ${answers.phone}
+
+📋 PROFIL FISCAL:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Situation: ${answers.situation || 'Non renseigné'}
+• Âge: ${answers.age || 'Non renseigné'} ans
+• Enfants à charge: ${answers.enfants || 'Non renseigné'}
+• Logement: ${answers.logement || 'Non renseigné'}
+• Activité: ${answers.activite || 'Non renseigné'}
+• Revenus nets mensuels: ${answers.revenus || 'Non renseigné'}€
+    `.trim();
+
+    // Envoi à Formspree avec ton ID
+    const formData = new FormData();
+    formData.append('email', answers.email);
+    formData.append('nom', answers.nom);
+    formData.append('telephone', answers.phone);
+    formData.append('message', message);
+
+    fetch('https://formspree.io/f/xeezykeq', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(answers)
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
     })
-    .then(() => {
-      window.location.href = 'resultat.html';
+    .then(response => {
+      if(response.ok){
+        // Succès : redirection ou message
+        const container = document.getElementById('questionContainer');
+        container.innerHTML = `
+          <div class="result-message">
+            <h2>✅ Merci !</h2>
+            <p>Votre diagnostic a bien été envoyé. Un expert vous contactera sous 24-48h.</p>
+            <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+          </div>
+        `;
+      } else {
+        throw new Error('Erreur serveur');
+      }
     })
     .catch(() => {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      alert('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter directement.');
     });
   }
 
@@ -705,5 +743,4 @@
 </script>
 
 </body>
-
 </html>
